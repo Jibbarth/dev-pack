@@ -1,0 +1,38 @@
+parameters:
+  git_dir: .
+  bin_dir: vendor/bin
+  ascii:
+    failed: ~
+    succeeded: ~
+  tasks:
+    composer:
+      file: "./composer.json"
+      no_check_all: true
+    git_blacklist:
+      keywords:
+        - "var_dump"
+        - "dump("
+        - "print_r"
+        - "die("
+      triggered_by: [php, twig]
+    jsonlint:
+      detect_key_conflicts: true
+    phpcpd:
+      directory: 'src'
+    phpcs:
+      standard: "PSR2"
+    phpcsfixer2:
+      config: '.php_cs'
+      verbose: true
+      diff: true
+      triggered_by: ['php']
+    phplint:
+      exclude: ['vendor']
+      triggered_by: ['php']
+    phpmd:
+      ruleset: [".php_md.xml"]
+    phpstan:
+        configuration: phpstan.neon
+    securitychecker: ~
+    xmllint: ~
+    yamllint: ~
