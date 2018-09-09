@@ -85,7 +85,7 @@ Very useful to refactor its code and avoid having identical pieces of code in se
 
 Similar to PHP CodeSniffer, it offers in my opinion a simpler configuration, and fixes errors in a command line.
 
-### [GrumPHP](https://github/phpro/grumphp)
+### [GrumPHP](https://github.com/phpro/grumphp)
 
 Allow to orchestrate all these tools on the precommit hook.
 
