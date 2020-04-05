@@ -18,9 +18,13 @@ parameters:
     jsonlint:
       detect_key_conflicts: true
     phpcpd:
-      directory: 'src'
+      directory: ['src']
     phpcs:
-      standard: "PSR2"
+      standard: "PSR12"
+      warning_severity: 0
+      whitelist_patterns:
+        - 'src'
+        - 'tests'
     phpcsfixer2:
       config: '.php_cs'
       verbose: true
@@ -32,7 +36,8 @@ parameters:
     phpmd:
       ruleset: [".php_md.xml"]
     phpstan:
-        configuration: phpstan.neon
+      level: ~
+      configuration: phpstan.neon
     securitychecker: ~
     xmllint: ~
     yamllint: ~
