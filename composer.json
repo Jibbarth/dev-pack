@@ -11,18 +11,18 @@
         "symfony-pack"
     ],
     "require": {
-        "endroid/installer": "^1.0",
-        "friendsofphp/php-cs-fixer": "^2.13",
-        "j13k/yaml-lint": "^1.1",
-        "jakub-onderka/php-parallel-lint": "^1.0",
-        "phpmd/phpmd": "^2.6",
-        "phpro/grumphp": "^0.14.2",
-        "phpstan/phpstan-symfony": "^0.10.1",
-        "sclable/xml-lint": "^0.2.4",
-        "sebastian/phpcpd": "^4.0",
-        "seld/jsonlint": "^1.7",
-        "sensiolabs/security-checker": "^5.0 || ^6.0",
-        "squizlabs/php_codesniffer": "^3.3"
+        "endroid/installer": "*",
+        "friendsofphp/php-cs-fixer": "*",
+        "nunomaduro/phpinsights": "*",
+        "php-parallel-lint/php-parallel-lint": "*",
+        "phpmd/phpmd": "*",
+        "phpro/grumphp": "*",
+        "phpstan/phpstan-symfony": "*",
+        "sclable/xml-lint": "*",
+        "sebastian/phpcpd": "*",
+        "seld/jsonlint": "*",
+        "sensiolabs/security-checker": "*",
+        "squizlabs/php_codesniffer": "*"
     },
     "authors": [
         {
