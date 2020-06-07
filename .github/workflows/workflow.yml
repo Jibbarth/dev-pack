@@ -36,9 +36,14 @@ jobs:
       - name: Install pack
         working-directory: ./project
         run: composer require --dev barth/dev-pack:"*" -n
+      - name: Create tests dir if not exist
+        working-directory: ./project
+        run: mkdir -p tests
       - name: Launch php-cs-fixer
         working-directory: ./project
-        run: vendor/bin/php-cs-fixer fix src
+        run: |
+          vendor/bin/php-cs-fixer fix src
+          vendor/bin/php-cs-fixer fix tests
       - name: Git init
         working-directory: ./project
         run: git init && git add .
