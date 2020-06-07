@@ -12,46 +12,66 @@ jobs:
   build:
     name: Symfony Skeleton
     strategy:
+      fail-fast: false
       matrix:
         version: ['^4.4', '@stable', '@dev']
         skeleton: ['skeleton', 'website-skeleton']
-
+        php-version: ['7.3', '7.4', '8.0']
+        exclude:
+          - version: '^4.4'
+            php-version: '8.0'
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.version == '@dev' }}
+    env:
+      allow_failure: ${{ matrix.version == '@dev' || matrix.php-version == '8.0' }}
 
     steps:
       - uses: actions/checkout@v2
         with:
           path: pack
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+      - name: Hello world
+        run: echo "Allow failure  $allow_failure"
       - name: Install Symfony Skeleton
         run: composer create-project --no-progress symfony/${{matrix.skeleton}}:${{matrix.version}} project
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Improve composer
         working-directory: ./project
         run: |
           composer config name barth/my-awesome-project
           composer config description "My awesome description"
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Linking pack 🎶
         working-directory: ./project
         run: composer config repositories.pack path ../pack/
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Composer config
         working-directory: ./project
         run: |
           composer config minimum-stability dev
           composer config prefer-stable true
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Install pack
         working-directory: ./project
         run: composer require --dev barth/dev-pack:"*" -n
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Create tests dir if not exist
         working-directory: ./project
         run: mkdir -p tests
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Launch php-cs-fixer
         working-directory: ./project
         run: |
           vendor/bin/php-cs-fixer fix src
           vendor/bin/php-cs-fixer fix tests
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Git init
         working-directory: ./project
         run: git init && git add .
+        continue-on-error: ${{ env.allow_failure == 'true' }}
       - name: Launch Grumphp
         working-directory: ./project
         run: vendor/bin/grumphp run -n --ansi
+        continue-on-error: ${{ env.allow_failure == 'true' }}
