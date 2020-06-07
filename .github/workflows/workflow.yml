@@ -13,9 +13,12 @@ jobs:
     name: Symfony Skeleton
     strategy:
       matrix:
-        version: ['^4.4', '@stable']
+        version: ['^4.4', '@stable', '@dev']
         skeleton: ['skeleton', 'website-skeleton']
+
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.version == '@dev' }}
+
     steps:
       - uses: actions/checkout@v2
         with:
