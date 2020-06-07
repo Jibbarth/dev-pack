@@ -16,7 +16,7 @@ But, for some time, when I start a new project, I add dev-dependencies to improv
 
 It allows me to have clean codes rules to share with project team, and avoid useless discussion in Code Reviews.
 
-![When using tabs instead space](https://ljdchost.com/vEKPc7F.gif)
+![When using tabs instead space](https://media.giphy.com/media/LROKNqr26NG48/giphy.gif)
 
 ## Installation and usage
 
