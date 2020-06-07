@@ -15,7 +15,12 @@ jobs:
       matrix:
         version: ['^4.4', '@stable']
         skeleton: ['skeleton', 'website-skeleton']
+        allow-to-fail: [false]
+        include:
+          - version: "@dev"
+            allow-to-fail: true
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.allow-to-fail }}
     steps:
       - uses: actions/checkout@v2
         with:
