@@ -28,12 +28,17 @@ jobs:
       - name: Linking pack 🎶
         working-directory: ./project
         run: composer config repositories.pack path ../pack/
+      - name: Composer config
+        working-directory: ./project
+        run: |
+          composer config minimum-stability dev
+          composer config prefer-stable true
       - name: Install pack
         working-directory: ./project
-        run: composer require barth/dev-pack
+        run: composer require --dev barth/dev-pack:"*" -n
       - name: Launch php-cs-fixer
         working-directory: ./project
-        run: vendor/bin/php-cs-fixer src
+        run: vendor/bin/php-cs-fixer fix src
       - name: Git init
         working-directory: ./project
         run: git init && git add .
