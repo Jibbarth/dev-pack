@@ -17,7 +17,7 @@
         "nunomaduro/phpinsights": "*",
         "php-parallel-lint/php-parallel-lint": "*",
         "phpmd/phpmd": "*",
-        "phpro/grumphp": "*",
+        "phpro/grumphp": ">=v0.19",
         "phpstan/extension-installer": "*",
         "phpstan/phpstan": "*",
         "phpstan/phpstan-strict-rules": "*",

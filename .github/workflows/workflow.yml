@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: ~
+  schedule:
+      - cron: '0 10 * * 1'
+
+jobs:
+  build:
+    name: Symfony Skeleton
+    strategy:
+      matrix:
+        version: ['^4.4', '@stable']
+        skeleton: ['skeleton', 'website-skeleton']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: pack
+      - name: Install Symfony Skeleton
+        run: composer create-project --no-progress symfony/${{matrix.skeleton}}:${{matrix.version}} project
+      - name: Improve composer
+        working-directory: ./project
+        run: |
+          composer config name barth/my-awesome-project
+          composer config description "My awesome description"
+      - name: Linking pack 🎶
+        working-directory: ./project
+        run: composer config repositories.pack path ../pack/
+      - name: Composer config
+        working-directory: ./project
+        run: |
+          composer config minimum-stability dev
+          composer config prefer-stable true
+      - name: Install pack
+        working-directory: ./project
+        run: composer require --dev barth/dev-pack:"*" -n
+      - name: Create tests dir if not exist
+        working-directory: ./project
+        run: mkdir -p tests
+      - name: Launch php-cs-fixer
+        working-directory: ./project
+        run: |
+          vendor/bin/php-cs-fixer fix src
+          vendor/bin/php-cs-fixer fix tests
+      - name: Git init
+        working-directory: ./project
+        run: git init && git add .
+      - name: Launch Grumphp
+        working-directory: ./project
+        run: vendor/bin/grumphp run -n --ansi
