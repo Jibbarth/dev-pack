@@ -13,15 +13,11 @@ jobs:
     name: Symfony Skeleton
     strategy:
       matrix:
-        version: ['^4.4', '@stable']
+        version: ['^4.4', '@stable', '@dev']
         skeleton: ['skeleton', 'website-skeleton']
-        allow-to-fail: [false]
-        include:
-          - version: "@dev"
-            allow-to-fail: true
 
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.allow-to-fail }}
+    continue-on-error: ${{ matrix.version == '@dev' }}
 
     steps:
       - uses: actions/checkout@v2
