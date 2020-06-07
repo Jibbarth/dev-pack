@@ -19,8 +19,10 @@ jobs:
         include:
           - version: "@dev"
             allow-to-fail: true
+
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.allow-to-fail }}
+
     steps:
       - uses: actions/checkout@v2
         with:
