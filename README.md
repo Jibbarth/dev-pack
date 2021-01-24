@@ -73,10 +73,6 @@ Here are the different rules it enforces:
 
 This tool prevents potential bugs before even executing the code. You can see [list of its features](https://github.com/phpstan/phpstan#consider-supporting-it-on-patreon-so-im-able-to-make-it-even-more-awesome ) and even test it [online](https://phpstan.org/)
 
-### [Sensio Security Checker](https://github.com/sensiolabs/security-checker)
-
-This tool will not avoid us (or very little) return code reviews, but ensures that our dependencies installed via [composer](https://getcomposer.org) do not contain known security vulnerabilities.
-
 ### [PHPCPD - Copy / Paste Detector](https://github.com/sebastianbergmann/phpcpd)
 
 Very useful to refactor code and avoid having identical pieces of code in several places of a project.

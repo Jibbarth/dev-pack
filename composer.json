@@ -24,7 +24,6 @@
         "phpstan/phpstan-symfony": "*",
         "sebastian/phpcpd": "*",
         "seld/jsonlint": "*",
-        "sensiolabs/security-checker": "*",
         "squizlabs/php_codesniffer": "*"
     },
     "authors": [
